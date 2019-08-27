@@ -15,6 +15,11 @@ public class FaseDeEnsinoRestController {
     @Autowired
     FaseDeEnsinoService faseDeEnsinoService;
 
+    @GetMapping("/")
+    public ResponseEntity<?> list() {
+        return ResponseEntity.ok(faseDeEnsinoService.list());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(faseDeEnsinoService.findById(id));
