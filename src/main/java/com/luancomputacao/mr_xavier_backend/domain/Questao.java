@@ -57,7 +57,7 @@ public class Questao implements Serializable {
     @JsonManagedReference
     private Professor autor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_disciplina", referencedColumnName = "id", updatable = false, nullable = false)
     @JsonManagedReference
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
