@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/questao")
@@ -18,16 +18,15 @@ public class QuestoesRestController {
     @Autowired
     QuestaoService questaoService;
 
+    @GetMapping("/")
+    public List<Questao> list() {
+        List questoes = questaoService.list();
+        return questoes;
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> find(@PathVariable Integer id) {
-        Optional<Questao> questao = questaoService.findById(id);
+        Questao questao = questaoService.findById(id);
         return ResponseEntity.ok(questao);
     }
-
-    @GetMapping("/{id}/string")
-    public ResponseEntity<?> findString(@PathVariable Integer id) {
-        Optional<Questao> questao = questaoService.findById(id);
-        return ResponseEntity.ok(questao.toString());
-    }
-
 }
