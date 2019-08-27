@@ -19,9 +19,9 @@ public class QuestoesRestController {
     QuestaoService questaoService;
 
     @GetMapping("/")
-    public List<Questao> list() {
+    public ResponseEntity<?> list() {
         List questoes = questaoService.list();
-        return questoes;
+        return ResponseEntity.ok(questoes);
     }
 
     @GetMapping("/{id}")

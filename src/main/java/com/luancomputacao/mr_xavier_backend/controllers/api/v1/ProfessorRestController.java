@@ -15,6 +15,11 @@ public class ProfessorRestController {
     @Autowired
     ProfessorService professorService;
 
+    @GetMapping("/")
+    public ResponseEntity<?> list() {
+        return ResponseEntity.ok(professorService.list());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(professorService.findById(id));

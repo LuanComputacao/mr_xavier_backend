@@ -15,13 +15,13 @@ public class QuestaoService {
     @Autowired
     QuestaoRepository questaoRepository;
 
-    public Questao findById(Integer id) {
-        Optional<Questao> questao = questaoRepository.findById(id);
-        return questao.orElseThrow(() -> new ObjectNotFoundException("Questão " + id + " não encontrada"));
-    }
-
     public List list() {
         Optional<List> questoes = Optional.of(questaoRepository.findAll());
         return questoes.orElseThrow(() -> new ObjectNotFoundException("Questoes não encontradas"));
+    }
+
+    public Questao findById(Integer id) {
+        Optional<Questao> questao = questaoRepository.findById(id);
+        return questao.orElseThrow(() -> new ObjectNotFoundException("Questão " + id + " não encontrada"));
     }
 }

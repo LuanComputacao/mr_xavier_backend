@@ -15,14 +15,14 @@ public class DisciplinaService {
     @Autowired
     DisciplinaRepository disciplinaRepository;
 
-    public Disciplina findById(Integer id) {
-        Optional<Disciplina> disciplina = disciplinaRepository.findById(id);
-        return disciplina.orElseThrow(() -> new ObjectNotFoundException("Professor não encontrado"));
-    }
-
     public List list() {
         Optional<List> disciplinas = Optional.of(disciplinaRepository.findAll());
         return disciplinas.orElseThrow(() -> new ObjectNotFoundException("Professores não encontrados"));
+    }
+
+    public Disciplina findById(Integer id) {
+        Optional<Disciplina> disciplina = disciplinaRepository.findById(id);
+        return disciplina.orElseThrow(() -> new ObjectNotFoundException("Professor " + id +" não encontrado"));
     }
 
 }
