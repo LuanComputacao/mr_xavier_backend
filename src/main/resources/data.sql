@@ -60,7 +60,7 @@ insert into questao
   (enunciado, espacos, invalidada, nivel, publica, tipo_de_questao, id_autor, id_disciplina, id_fase_de_ensino, criado_em, atualizado_em)
 values
   ('Esta é a terceira questão?', 3, 0, 1, 1, 1, 1, 1, 8, NOW(), NOW()),
-  ('Esta é a segunda questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW())
+  ('Esta é a segunda questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW()),
   ('Esta é a terceira questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW());
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias das Questões
@@ -92,6 +92,14 @@ VALUES
   (NOW(), NOW(), 'Primeiro teste do sistema', 1, 2, 8);
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
+-- Professor Utiliza Teste
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+insert into professor_utiliza_teste
+  (data_utilizacao, id_professor, id_teste)
+values
+  (NOW(), 1, 1);
+
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Questões de Teste
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into questoes_de_teste
@@ -103,4 +111,7 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Proposta de Invalidação
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-
+insert into proposta_de_invalidacao
+  (analisado_em, criado_em, justificativa, proposta, status, id_moderador, id_professor, id_questao)
+values
+  (null, NOW(), 'Primeiro teste de invalidação', 'Qualquer modificação', false, 2, 1, 1);

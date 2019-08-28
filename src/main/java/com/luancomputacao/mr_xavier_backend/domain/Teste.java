@@ -76,4 +76,80 @@ public class Teste implements Serializable {
         this.disciplina = disciplina;
         this.questoes = questoes;
     }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Professor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Professor autor) {
+        this.autor = autor;
+    }
+
+    public Date getCriadoEm() {
+        return criadoEm;
+    }
+
+    public void setCriadoEm(Date criadoEm) {
+        this.criadoEm = criadoEm;
+    }
+
+    public Date getAtualizadoEm() {
+        return atualizadoEm;
+    }
+
+    public void setAtualizadoEm(Date atualizadoEm) {
+        this.atualizadoEm = atualizadoEm;
+    }
+
+    public FaseDeEnsino getFaseDeEnsino() {
+        return faseDeEnsino;
+    }
+
+    public void setFaseDeEnsino(FaseDeEnsino faseDeEnsino) {
+        this.faseDeEnsino = faseDeEnsino;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public Collection<Questao> getQuestoes() {
+        return questoes;
+    }
+
+    public void setQuestoes(Collection<Questao> questoes) {
+        this.questoes = questoes;
+    }
+
+    public Collection<ProfessorUtilizaTeste> getProfessorUtilizaTestes() {
+        return professorUtilizaTestes;
+    }
+
+    public void setProfessorUtilizaTestes(Collection<ProfessorUtilizaTeste> professorUtilizaTestes) {
+        this.professorUtilizaTestes = professorUtilizaTestes;
+    }
 }

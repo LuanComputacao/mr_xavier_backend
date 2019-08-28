@@ -24,12 +24,12 @@ public class ProfessorUtilizaTeste implements Serializable {
 
     @JoinColumn(name = "id_professor", referencedColumnName = "id", insertable = false, updatable = false)
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Professor professor;
 
     @JoinColumn(name = "id_teste", referencedColumnName = "id", insertable = false, updatable = false)
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Teste teste;
 
     @Column(name = "data_utilizacao", updatable = false)
@@ -37,6 +37,9 @@ public class ProfessorUtilizaTeste implements Serializable {
     @CreatedDate
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date dataUtilizacao;
+
+    public ProfessorUtilizaTeste() {
+    }
 
     public ProfessorUtilizaTeste(Professor professor, Teste teste) {
         this.professor = professor;
