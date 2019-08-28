@@ -21,8 +21,8 @@ public class ProfessorUtilizaTesteService {
     }
 
     public ProfessorUtilizaTeste findById(Integer id) {
-        Optional<ProfessorUtilizaTeste> questao = professorUtilizaTesteRepository.findById(id);
-        return questao.orElseThrow(() -> new ObjectNotFoundException("Questão " + id + " não encontrada"));
+        Optional<ProfessorUtilizaTeste> professorUtilizaTeste = professorUtilizaTesteRepository.findById(id);
+        return professorUtilizaTeste.orElseThrow(() -> new ObjectNotFoundException("Questão " + id + " não encontrada"));
     }
 
 }
