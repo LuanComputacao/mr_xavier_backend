@@ -26,7 +26,7 @@ public class Teste implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinColumn(name = "id_professor", referencedColumnName = "id")
     private Professor autor;
@@ -43,21 +43,21 @@ public class Teste implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date atualizadoEm;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinColumn(name = "id_fase_de_ensino", referencedColumnName = "id")
     private FaseDeEnsino faseDeEnsino;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinColumn(name = "id_disciplina", referencedColumnName = "id")
     private Disciplina disciplina;
 
     @ManyToMany
     @JoinTable(
-            name = "materia_de_questao",
+            name = "questoes_de_teste",
             joinColumns = {@JoinColumn(name = "questao_id")},
-            inverseJoinColumns = {@JoinColumn(name = "materia_id")}
+            inverseJoinColumns = {@JoinColumn(name = "teste_id")}
     )
     @JsonBackReference("testes")
     private Collection<Questao> questoes;
@@ -65,6 +65,9 @@ public class Teste implements Serializable {
     @OneToMany(mappedBy = "teste")
     @JsonBackReference
     private Collection<ProfessorUtilizaTeste> professorUtilizaTestes;
+
+    public Teste() {
+    }
 
     public Teste(String descricao, Professor autor, FaseDeEnsino faseDeEnsino, Disciplina disciplina, Collection<Questao> questoes) {
         this.descricao = descricao;

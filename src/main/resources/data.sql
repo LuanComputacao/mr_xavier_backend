@@ -60,7 +60,8 @@ insert into questao
   (enunciado, espacos, invalidada, nivel, publica, tipo_de_questao, id_autor, id_disciplina, id_fase_de_ensino, criado_em, atualizado_em)
 values
   ('Esta é a terceira questão?', 3, 0, 1, 1, 1, 1, 1, 8, NOW(), NOW()),
-  ('Esta é a segunda questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW());
+  ('Esta é a segunda questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW())
+  ('Esta é a terceira questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW());
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias das Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -71,3 +72,35 @@ values
   (1, 2),
   (2, 3),
   (2, 4);
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+-- Opções das Questões
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+INSERT INTO opcao_de_questao
+  (texto, value, id_questao)
+VALUES
+  ('Primeira opção', true, 3),
+  ('Segunda opção', false, 3),
+  ('Terceira opção', false, 3),
+  ('Quarta opção', false, 3);
+
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+-- Teste
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+insert into teste
+  (atualizado_em, criado_em, descricao, id_professor, id_disciplina, id_fase_de_ensino)
+VALUES
+  (NOW(), NOW(), 'Primeiro teste do sistema', 1, 2, 8);
+
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+-- Questões de Teste
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+insert into questoes_de_teste
+  (questao_id, teste_id)
+values
+  (2, 1),
+  (3, 1);
+
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+-- Proposta de Invalidação
+-- - - - - - - - - - - - - - - - - - - - - - - - - -
+
