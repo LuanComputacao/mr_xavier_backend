@@ -1,8 +1,6 @@
 package com.luancomputacao.mr_xavier_backend.controllers.api.v1;
 
-import com.luancomputacao.mr_xavier_backend.domain.Questao;
 import com.luancomputacao.mr_xavier_backend.domain.Teste;
-import com.luancomputacao.mr_xavier_backend.services.QuestaoService;
 import com.luancomputacao.mr_xavier_backend.services.TesteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
