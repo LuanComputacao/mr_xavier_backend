@@ -23,17 +23,17 @@ public class PropostaDeInvalidacao implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinColumn(name = "id_questao", referencedColumnName = "id", updatable = false, nullable = false)
     private Questao questao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinColumn(name = "id_professor", referencedColumnName = "id", updatable = false, nullable = false)
     private Professor professor;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinColumn(name = "id_moderador", referencedColumnName = "id")
     private Professor moderador;
