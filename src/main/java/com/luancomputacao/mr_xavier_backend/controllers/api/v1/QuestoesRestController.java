@@ -1,7 +1,7 @@
 package com.luancomputacao.mr_xavier_backend.controllers.api.v1;
 
 import com.luancomputacao.mr_xavier_backend.domain.Question;
-import com.luancomputacao.mr_xavier_backend.services.QuestaoService;
+import com.luancomputacao.mr_xavier_backend.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ import java.util.List;
 public class QuestoesRestController {
 
     @Autowired
-    QuestaoService questionService;
+    QuestionService questionService;
 
     @GetMapping("/")
     public ResponseEntity<?> list() {
