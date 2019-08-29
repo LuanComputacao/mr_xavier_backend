@@ -11,10 +11,10 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "disciplina")
+@Table(name = "subject")
 @EntityListeners(AuditingEntityListener.class)
-@JsonRootName(value = "disciplina")
-public class Disciplina implements Serializable {
+@JsonRootName(value = "subject")
+public class Subject implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,22 +27,22 @@ public class Disciplina implements Serializable {
     @Length(max = 128)
     private String nome;
 
-    @OneToMany(mappedBy = "disciplina", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
     @JsonManagedReference
     private Collection<Materia> materias;
 
-    @OneToMany(mappedBy = "disciplina")
+    @OneToMany(mappedBy = "subject")
     @JsonBackReference
     private Collection<Question> questoes;
 
-    @OneToMany(mappedBy = "disciplina")
+    @OneToMany(mappedBy = "subject")
     @JsonBackReference
     private Collection<Teste> testes;
 
-    public Disciplina() {
+    public Subject() {
     }
 
-    public Disciplina(String nome) {
+    public Subject(String nome) {
         this.nome = nome;
     }
 
@@ -90,7 +90,7 @@ public class Disciplina implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Disciplina that = (Disciplina) o;
+        Subject that = (Subject) o;
         return Objects.equals(getNome(), that.getNome());
     }
 
@@ -101,7 +101,7 @@ public class Disciplina implements Serializable {
 
     @Override
     public String toString() {
-        return "Disciplina{" +
+        return "Subject{" +
                 "nome='" + nome + '\'' +
                 '}';
     }

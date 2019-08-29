@@ -26,9 +26,9 @@ public class Materia implements Serializable {
     private String nome;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_disciplina", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_subject", referencedColumnName = "id", nullable = false)
     @JsonBackReference
-    private Disciplina disciplina;
+    private Subject subject;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "materias")
     @JsonBackReference("materias")
@@ -38,8 +38,8 @@ public class Materia implements Serializable {
     public Materia() {
     }
 
-    public Materia(Disciplina disciplina, String nome) {
-        this.disciplina = disciplina;
+    public Materia(Subject subject, String nome) {
+        this.subject = subject;
         this.nome = nome;
     }
 
@@ -51,12 +51,12 @@ public class Materia implements Serializable {
         this.id = id;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public String getNome() {
@@ -72,20 +72,20 @@ public class Materia implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Materia materia = (Materia) o;
-        return Objects.equals(getDisciplina(), materia.getDisciplina()) &&
+        return Objects.equals(getSubject(), materia.getSubject()) &&
                 Objects.equals(getNome(), materia.getNome());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDisciplina(), getNome());
+        return Objects.hash(getSubject(), getNome());
     }
 
 
     @Override
     public String toString() {
         return "Materia{" +
-                "disciplina=" + disciplina +
+                "subject=" + subject +
                 ", nome='" + nome + '\'' +
                 '}';
     }

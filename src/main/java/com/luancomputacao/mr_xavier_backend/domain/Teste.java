@@ -50,8 +50,8 @@ public class Teste implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
-    @JoinColumn(name = "id_disciplina", referencedColumnName = "id")
-    private Disciplina disciplina;
+    @JoinColumn(name = "id_subject", referencedColumnName = "id")
+    private Subject subject;
 
     @ManyToMany
     @JoinTable(
@@ -69,11 +69,11 @@ public class Teste implements Serializable {
     public Teste() {
     }
 
-    public Teste(String descricao, Professor autor, FaseDeEnsino faseDeEnsino, Disciplina disciplina, Collection<Question> questoes) {
+    public Teste(String descricao, Professor autor, FaseDeEnsino faseDeEnsino, Subject subject, Collection<Question> questoes) {
         this.descricao = descricao;
         this.autor = autor;
         this.faseDeEnsino = faseDeEnsino;
-        this.disciplina = disciplina;
+        this.subject = subject;
         this.questoes = questoes;
     }
 
@@ -129,12 +129,12 @@ public class Teste implements Serializable {
         this.faseDeEnsino = faseDeEnsino;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public Collection<Question> getQuestoes() {

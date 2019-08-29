@@ -58,10 +58,10 @@ public class Question implements Serializable {
     private Professor autor;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_disciplina", referencedColumnName = "id", updatable = false, nullable = false)
+    @JoinColumn(name = "id_subject", referencedColumnName = "id", updatable = false, nullable = false)
     @JsonManagedReference
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private Disciplina disciplina;
+    private Subject subject;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
@@ -89,7 +89,7 @@ public class Question implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "materia_de_question",
+            name = "question_knowledge",
             joinColumns = {@JoinColumn(name = "question_id")},
             inverseJoinColumns = {@JoinColumn(name = "materia_id")}
     )
@@ -108,7 +108,7 @@ public class Question implements Serializable {
             Professor autor,
             Boolean publica,
             FaseDeEnsino faseDeEnsino,
-            Disciplina disciplina,
+            Subject subject,
             Collection<Materia> materias,
             TipoDeQuestao tipoDeQuestaoEnum,
             Float nivel,
@@ -116,7 +116,7 @@ public class Question implements Serializable {
         this.autor = autor;
         this.publica = publica;
         this.faseDeEnsino = faseDeEnsino;
-        this.disciplina = disciplina;
+        this.subject = subject;
         this.materias = materias;
         this.tipoDeQuestaoEnum = tipoDeQuestaoEnum;
         this.enunciado = enunciado;
@@ -156,12 +156,12 @@ public class Question implements Serializable {
         this.autor = autor;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public String getEnunciado() {
@@ -243,14 +243,14 @@ public class Question implements Serializable {
         Question question = (Question) o;
         return Objects.equals(getCriadoEm(), question.getCriadoEm()) &&
                 Objects.equals(getAutor(), question.getAutor()) &&
-                Objects.equals(getDisciplina(), question.getDisciplina()) &&
+                Objects.equals(getSubject(), question.getSubject()) &&
                 Objects.equals(getFaseDeEnsino(), question.getFaseDeEnsino()) &&
                 Objects.equals(getPublica(), question.getPublica());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCriadoEm(), getAutor(), getDisciplina(), getFaseDeEnsino(), getPublica());
+        return Objects.hash(getCriadoEm(), getAutor(), getSubject(), getFaseDeEnsino(), getPublica());
     }
 
 
@@ -260,7 +260,7 @@ public class Question implements Serializable {
                 "criadoEm=" + criadoEm +
                 ", atualizadoEm=" + atualizadoEm +
                 ", autor=" + autor +
-                ", disciplina=" + disciplina +
+                ", subject=" + subject +
                 ", enunciado='" + enunciado + '\'' +
                 ", espacos=" + espacos +
                 ", faseDeEnsino=" + faseDeEnsino +
