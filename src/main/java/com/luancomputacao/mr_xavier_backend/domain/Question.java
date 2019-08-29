@@ -91,10 +91,10 @@ public class Question implements Serializable {
     @JoinTable(
             name = "question_knowledge",
             joinColumns = {@JoinColumn(name = "question_id")},
-            inverseJoinColumns = {@JoinColumn(name = "materia_id")}
+            inverseJoinColumns = {@JoinColumn(name = "knowledge_id")}
     )
     @JsonManagedReference
-    private Collection<Materia> materias;
+    private Collection<Knowledge> knowledges;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questoes")
     @JsonBackReference("questoes")
@@ -109,7 +109,7 @@ public class Question implements Serializable {
             Boolean publica,
             FaseDeEnsino faseDeEnsino,
             Subject subject,
-            Collection<Materia> materias,
+            Collection<Knowledge> knowledges,
             TipoDeQuestao tipoDeQuestaoEnum,
             Float nivel,
             String enunciado) {
@@ -117,7 +117,7 @@ public class Question implements Serializable {
         this.publica = publica;
         this.faseDeEnsino = faseDeEnsino;
         this.subject = subject;
-        this.materias = materias;
+        this.knowledges = knowledges;
         this.tipoDeQuestaoEnum = tipoDeQuestaoEnum;
         this.enunciado = enunciado;
         this.nivel = nivel;
@@ -196,12 +196,12 @@ public class Question implements Serializable {
         this.invalidada = invalidada;
     }
 
-    public Collection<Materia> getMaterias() {
-        return materias;
+    public Collection<Knowledge> getKnowledges() {
+        return knowledges;
     }
 
-    public void setMaterias(Collection<Materia> materias) {
-        this.materias = materias;
+    public void setKnowledges(Collection<Knowledge> knowledges) {
+        this.knowledges = knowledges;
     }
 
     public Float getNivel() {
@@ -265,7 +265,7 @@ public class Question implements Serializable {
                 ", espacos=" + espacos +
                 ", faseDeEnsino=" + faseDeEnsino +
                 ", invalidada=" + invalidada +
-                ", materias=" + materias +
+                ", knowledges=" + knowledges +
                 ", nivel=" + nivel +
                 ", opcoesDeQuestao=" + opcoesDeQuestao +
                 ", publica=" + publica +

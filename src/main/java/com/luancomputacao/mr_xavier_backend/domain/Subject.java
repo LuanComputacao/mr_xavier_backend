@@ -29,7 +29,7 @@ public class Subject implements Serializable {
 
     @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
     @JsonManagedReference
-    private Collection<Materia> materias;
+    private Collection<Knowledge> knowledges;
 
     @OneToMany(mappedBy = "subject")
     @JsonBackReference
@@ -62,12 +62,12 @@ public class Subject implements Serializable {
         this.nome = nome;
     }
 
-    public Collection<Materia> getMaterias() {
-        return materias;
+    public Collection<Knowledge> getKnowledges() {
+        return knowledges;
     }
 
-    public void setMaterias(Collection<Materia> materias) {
-        this.materias = materias;
+    public void setKnowledges(Collection<Knowledge> knowledges) {
+        this.knowledges = knowledges;
     }
 
     public Collection<Question> getQuestoes() {

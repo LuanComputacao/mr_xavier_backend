@@ -10,9 +10,9 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "materia")
+@Table(name = "knowledge")
 @EntityListeners(AuditingEntityListener.class)
-public class Materia implements Serializable {
+public class Knowledge implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,15 +30,15 @@ public class Materia implements Serializable {
     @JsonBackReference
     private Subject subject;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "materias")
-    @JsonBackReference("materias")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "knowledges")
+    @JsonBackReference("knowledges")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Collection<Question> questoes;
 
-    public Materia() {
+    public Knowledge() {
     }
 
-    public Materia(Subject subject, String nome) {
+    public Knowledge(Subject subject, String nome) {
         this.subject = subject;
         this.nome = nome;
     }
@@ -71,9 +71,9 @@ public class Materia implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Materia materia = (Materia) o;
-        return Objects.equals(getSubject(), materia.getSubject()) &&
-                Objects.equals(getNome(), materia.getNome());
+        Knowledge knowledge = (Knowledge) o;
+        return Objects.equals(getSubject(), knowledge.getSubject()) &&
+                Objects.equals(getNome(), knowledge.getNome());
     }
 
     @Override
@@ -84,7 +84,7 @@ public class Materia implements Serializable {
 
     @Override
     public String toString() {
-        return "Materia{" +
+        return "Knowledge{" +
                 "subject=" + subject +
                 ", nome='" + nome + '\'' +
                 '}';
