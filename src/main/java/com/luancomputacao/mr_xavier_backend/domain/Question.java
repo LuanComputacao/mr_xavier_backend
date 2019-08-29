@@ -13,9 +13,9 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "questao")
+@Table(name = "question")
 @EntityListeners(AuditingEntityListener.class)
-public class Questao implements Serializable {
+public class Question implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -69,12 +69,12 @@ public class Questao implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private FaseDeEnsino faseDeEnsino;
 
-    @OneToMany(mappedBy = "questao")
+    @OneToMany(mappedBy = "question")
     @JsonManagedReference
     @JsonProperty("opcoes")
     private Collection<OpcaoDeQuestao> opcoesDeQuestao;
 
-    @OneToMany(mappedBy = "questao")
+    @OneToMany(mappedBy = "question")
     @JsonBackReference
     @JsonProperty("propostas-de-invalidacao")
     private Collection<PropostaDeInvalidacao> propostasDeInvalidacao;
@@ -84,13 +84,13 @@ public class Questao implements Serializable {
     private Collection<ProfessorUtilizaTeste> professorUtilizaTestes;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "tipo_de_questao")
+    @Column(name = "tipo_de_question")
     private TipoDeQuestao tipoDeQuestaoEnum;
 
     @ManyToMany
     @JoinTable(
-            name = "materia_de_questao",
-            joinColumns = {@JoinColumn(name = "questao_id")},
+            name = "materia_de_question",
+            joinColumns = {@JoinColumn(name = "question_id")},
             inverseJoinColumns = {@JoinColumn(name = "materia_id")}
     )
     @JsonManagedReference
@@ -100,17 +100,11 @@ public class Questao implements Serializable {
     @JsonBackReference("questoes")
     private Collection<Teste> testes;
 
-    public Questao() {
+    public Question() {
 
     }
 
-    /**
-     * @param autor
-     * @param disciplina
-     * @param materias
-     * @param tipoDeQuestaoEnum
-     */
-    public Questao(
+    public Question(
             Professor autor,
             Boolean publica,
             FaseDeEnsino faseDeEnsino,
@@ -246,12 +240,12 @@ public class Questao implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Questao questao = (Questao) o;
-        return Objects.equals(getCriadoEm(), questao.getCriadoEm()) &&
-                Objects.equals(getAutor(), questao.getAutor()) &&
-                Objects.equals(getDisciplina(), questao.getDisciplina()) &&
-                Objects.equals(getFaseDeEnsino(), questao.getFaseDeEnsino()) &&
-                Objects.equals(getPublica(), questao.getPublica());
+        Question question = (Question) o;
+        return Objects.equals(getCriadoEm(), question.getCriadoEm()) &&
+                Objects.equals(getAutor(), question.getAutor()) &&
+                Objects.equals(getDisciplina(), question.getDisciplina()) &&
+                Objects.equals(getFaseDeEnsino(), question.getFaseDeEnsino()) &&
+                Objects.equals(getPublica(), question.getPublica());
     }
 
     @Override

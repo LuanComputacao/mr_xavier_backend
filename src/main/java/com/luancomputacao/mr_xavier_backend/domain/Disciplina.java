@@ -33,7 +33,7 @@ public class Disciplina implements Serializable {
 
     @OneToMany(mappedBy = "disciplina")
     @JsonBackReference
-    private Collection<Questao> questoes;
+    private Collection<Question> questoes;
 
     @OneToMany(mappedBy = "disciplina")
     @JsonBackReference
@@ -70,11 +70,11 @@ public class Disciplina implements Serializable {
         this.materias = materias;
     }
 
-    public Collection<Questao> getQuestoes() {
+    public Collection<Question> getQuestoes() {
         return questoes;
     }
 
-    public void setQuestoes(Collection<Questao> questoes) {
+    public void setQuestoes(Collection<Question> questoes) {
         this.questoes = questoes;
     }
 
