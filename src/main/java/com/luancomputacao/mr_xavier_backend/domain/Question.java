@@ -1,7 +1,7 @@
 package com.luancomputacao.mr_xavier_backend.domain;
 
 import com.fasterxml.jackson.annotation.*;
-import com.luancomputacao.mr_xavier_backend.domain.enums.TipoDeQuestao;
+import com.luancomputacao.mr_xavier_backend.domain.enums.QuestionType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -72,7 +72,7 @@ public class Question implements Serializable {
     @OneToMany(mappedBy = "question")
     @JsonManagedReference
     @JsonProperty("opcoes")
-    private Collection<OpcaoDeQuestao> opcoesDeQuestao;
+    private Collection<QuestionOption> opcoesDeQuestao;
 
     @OneToMany(mappedBy = "question")
     @JsonBackReference
@@ -84,8 +84,8 @@ public class Question implements Serializable {
     private Collection<ProfessorUtilizaTeste> professorUtilizaTestes;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "tipo_de_question")
-    private TipoDeQuestao tipoDeQuestaoEnum;
+    @Column(name = "question_type")
+    private QuestionType questionTypeEnum;
 
     @ManyToMany
     @JoinTable(
@@ -110,7 +110,7 @@ public class Question implements Serializable {
             FaseDeEnsino faseDeEnsino,
             Subject subject,
             Collection<Knowledge> knowledges,
-            TipoDeQuestao tipoDeQuestaoEnum,
+            QuestionType questionTypeEnum,
             Float nivel,
             String enunciado) {
         this.autor = autor;
@@ -118,7 +118,7 @@ public class Question implements Serializable {
         this.faseDeEnsino = faseDeEnsino;
         this.subject = subject;
         this.knowledges = knowledges;
-        this.tipoDeQuestaoEnum = tipoDeQuestaoEnum;
+        this.questionTypeEnum = questionTypeEnum;
         this.enunciado = enunciado;
         this.nivel = nivel;
         this.invalidada = false;
@@ -212,11 +212,11 @@ public class Question implements Serializable {
         this.nivel = nivel;
     }
 
-    public Collection<OpcaoDeQuestao> getOpcoesDeQuestao() {
+    public Collection<QuestionOption> getOpcoesDeQuestao() {
         return opcoesDeQuestao;
     }
 
-    public void setOpcoesDeQuestao(Collection<OpcaoDeQuestao> opcoesDeQuestao) {
+    public void setOpcoesDeQuestao(Collection<QuestionOption> opcoesDeQuestao) {
         this.opcoesDeQuestao = opcoesDeQuestao;
     }
 
@@ -228,12 +228,12 @@ public class Question implements Serializable {
         this.publica = publica;
     }
 
-    public Enum<TipoDeQuestao> getTipoDeQuestaoEnum() {
-        return tipoDeQuestaoEnum;
+    public Enum<QuestionType> getQuestionTypeEnum() {
+        return questionTypeEnum;
     }
 
-    public void setTipoDeQuestaoEnum(TipoDeQuestao tipoDeQuestaoEnum) {
-        this.tipoDeQuestaoEnum = tipoDeQuestaoEnum;
+    public void setQuestionTypeEnum(QuestionType questionTypeEnum) {
+        this.questionTypeEnum = questionTypeEnum;
     }
 
     @Override
@@ -269,7 +269,7 @@ public class Question implements Serializable {
                 ", nivel=" + nivel +
                 ", opcoesDeQuestao=" + opcoesDeQuestao +
                 ", publica=" + publica +
-                ", tipoDeQuestaoEnum=" + tipoDeQuestaoEnum +
+                ", questionTypeEnum=" + questionTypeEnum +
                 '}';
     }
 }
