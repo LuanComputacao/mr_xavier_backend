@@ -41,9 +41,9 @@ public class Professor implements Serializable {
     @JsonBackReference
     private Collection<Question> questoes;
 
-    @OneToMany(mappedBy = "teste")
+    @OneToMany(mappedBy = "test")
     @JsonBackReference
-    private Collection<ProfessorUtilizaTeste> professorUtilizaTestes;
+    private Collection<ProfessorUtilizaTest> professorUtilizaTests;
 
     @OneToMany(mappedBy = "professor")
     @JsonBackReference
@@ -55,7 +55,7 @@ public class Professor implements Serializable {
 
     @OneToMany(mappedBy = "autor")
     @JsonBackReference
-    private Collection<Teste> testes;
+    private Collection<Test> tests;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name="PERFIS")

@@ -11,9 +11,9 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "professor_utiliza_teste")
+@Table(name = "professor_utiliza_test")
 @EntityListeners(AuditingEntityListener.class)
-public class ProfessorUtilizaTeste implements Serializable {
+public class ProfessorUtilizaTest implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,10 +27,10 @@ public class ProfessorUtilizaTeste implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Professor professor;
 
-    @JoinColumn(name = "id_teste", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_test", referencedColumnName = "id", insertable = false, updatable = false)
     @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
-    private Teste teste;
+    private Test test;
 
     @Column(name = "data_utilizacao", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -38,12 +38,12 @@ public class ProfessorUtilizaTeste implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date dataUtilizacao;
 
-    public ProfessorUtilizaTeste() {
+    public ProfessorUtilizaTest() {
     }
 
-    public ProfessorUtilizaTeste(Professor professor, Teste teste) {
+    public ProfessorUtilizaTest(Professor professor, Test test) {
         this.professor = professor;
-        this.teste = teste;
+        this.test = test;
     }
 
     public Professor getProfessor() {
@@ -54,12 +54,12 @@ public class ProfessorUtilizaTeste implements Serializable {
         this.professor = professor;
     }
 
-    public Teste getTeste() {
-        return teste;
+    public Test getTest() {
+        return test;
     }
 
-    public void setTeste(Teste teste) {
-        this.teste = teste;
+    public void setTest(Test test) {
+        this.test = test;
     }
 
     public Date getDataUtilizacao() {
@@ -74,22 +74,22 @@ public class ProfessorUtilizaTeste implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProfessorUtilizaTeste that = (ProfessorUtilizaTeste) o;
+        ProfessorUtilizaTest that = (ProfessorUtilizaTest) o;
         return Objects.equals(getProfessor(), that.getProfessor()) &&
-                Objects.equals(getTeste(), that.getTeste()) &&
+                Objects.equals(getTest(), that.getTest()) &&
                 Objects.equals(getDataUtilizacao(), that.getDataUtilizacao());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProfessor(), getTeste(), getDataUtilizacao());
+        return Objects.hash(getProfessor(), getTest(), getDataUtilizacao());
     }
 
     @Override
     public String toString() {
-        return "ProfessorUtilizaTeste{" +
+        return "ProfessorUtilizaTest{" +
                 "professor=" + professor +
-                ", teste=" + teste +
+                ", test=" + test +
                 ", dataUtilizacao=" + dataUtilizacao +
                 '}';
     }
