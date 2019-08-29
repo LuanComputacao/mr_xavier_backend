@@ -65,9 +65,9 @@ public class Question implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
-    @JoinColumn(name = "id_fase_de_ensino", referencedColumnName = "id", updatable = false, nullable = false)
+    @JoinColumn(name = "id_grade", referencedColumnName = "id", updatable = false, nullable = false)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private FaseDeEnsino faseDeEnsino;
+    private Grade grade;
 
     @OneToMany(mappedBy = "question")
     @JsonManagedReference
@@ -81,7 +81,7 @@ public class Question implements Serializable {
 
     @OneToMany(mappedBy = "professor")
     @JsonBackReference
-    private Collection<ProfessorUtilizaTeste> professorUtilizaTestes;
+    private Collection<ProfessorUtilizaTest> professorUtilizaTests;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "question_type")
@@ -98,7 +98,7 @@ public class Question implements Serializable {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questoes")
     @JsonBackReference("questoes")
-    private Collection<Teste> testes;
+    private Collection<Test> tests;
 
     public Question() {
 
@@ -107,7 +107,7 @@ public class Question implements Serializable {
     public Question(
             Professor autor,
             Boolean publica,
-            FaseDeEnsino faseDeEnsino,
+            Grade grade,
             Subject subject,
             Collection<Knowledge> knowledges,
             QuestionType questionTypeEnum,
@@ -115,7 +115,7 @@ public class Question implements Serializable {
             String enunciado) {
         this.autor = autor;
         this.publica = publica;
-        this.faseDeEnsino = faseDeEnsino;
+        this.grade = grade;
         this.subject = subject;
         this.knowledges = knowledges;
         this.questionTypeEnum = questionTypeEnum;
@@ -180,12 +180,12 @@ public class Question implements Serializable {
         this.espacos = espacos;
     }
 
-    public FaseDeEnsino getFaseDeEnsino() {
-        return faseDeEnsino;
+    public Grade getGrade() {
+        return grade;
     }
 
-    public void setFaseDeEnsino(FaseDeEnsino faseDeEnsino) {
-        this.faseDeEnsino = faseDeEnsino;
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 
     public Boolean getInvalidada() {
@@ -244,13 +244,13 @@ public class Question implements Serializable {
         return Objects.equals(getCriadoEm(), question.getCriadoEm()) &&
                 Objects.equals(getAutor(), question.getAutor()) &&
                 Objects.equals(getSubject(), question.getSubject()) &&
-                Objects.equals(getFaseDeEnsino(), question.getFaseDeEnsino()) &&
+                Objects.equals(getGrade(), question.getGrade()) &&
                 Objects.equals(getPublica(), question.getPublica());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCriadoEm(), getAutor(), getSubject(), getFaseDeEnsino(), getPublica());
+        return Objects.hash(getCriadoEm(), getAutor(), getSubject(), getGrade(), getPublica());
     }
 
 
@@ -263,7 +263,7 @@ public class Question implements Serializable {
                 ", subject=" + subject +
                 ", enunciado='" + enunciado + '\'' +
                 ", espacos=" + espacos +
-                ", faseDeEnsino=" + faseDeEnsino +
+                ", grade=" + grade +
                 ", invalidada=" + invalidada +
                 ", knowledges=" + knowledges +
                 ", nivel=" + nivel +

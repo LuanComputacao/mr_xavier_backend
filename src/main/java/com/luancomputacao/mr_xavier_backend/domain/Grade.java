@@ -9,9 +9,9 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "fase_de_ensino ")
+@Table(name = "grade ")
 @EntityListeners(AuditingEntityListener.class)
-public class FaseDeEnsino implements Serializable {
+public class Grade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,20 +22,20 @@ public class FaseDeEnsino implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(mappedBy = "faseDeEnsino")
+    @OneToMany(mappedBy = "grade")
     @JsonBackReference
     private Collection<Question> questoes;
 
 
-    @OneToMany(mappedBy = "faseDeEnsino")
+    @OneToMany(mappedBy = "grade")
     @JsonBackReference
-    private Collection<Teste> testes;
+    private Collection<Test> tests;
 
 
-    public FaseDeEnsino() {
+    public Grade() {
     }
 
-    public FaseDeEnsino(String nome) {
+    public Grade(String nome) {
         this.nome = nome;
     }
 
@@ -60,7 +60,7 @@ public class FaseDeEnsino implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FaseDeEnsino that = (FaseDeEnsino) o;
+        Grade that = (Grade) o;
         return Objects.equals(getNome(), that.getNome());
     }
 
@@ -71,7 +71,7 @@ public class FaseDeEnsino implements Serializable {
 
     @Override
     public String toString() {
-        return "FaseDeEnsino{" +
+        return "Grade{" +
                 "nome='" + nome + '\'' +
                 '}';
     }
