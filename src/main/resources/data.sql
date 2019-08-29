@@ -21,7 +21,7 @@ values
 -- Matérias
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into materia
- (nome, id_disciplina)
+ (nome, id_subject)
  values
   ('Funções de Primeiro Grau', 1),
   ('Funções de Segundo Grau', 1),
@@ -31,7 +31,7 @@ insert into materia
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into disciplina
+insert into subject
   (nome)
 values
   ('Matemática'),
@@ -57,7 +57,7 @@ values
 -- Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into question
-  (enunciado, espacos, invalidada, nivel, publica, tipo_de_question, id_autor, id_disciplina, id_fase_de_ensino, criado_em, atualizado_em)
+  (enunciado, espacos, invalidada, nivel, publica, tipo_de_question, id_autor, id_subject, id_fase_de_ensino, criado_em, atualizado_em)
 values
   ('Esta é a terceira questão?', 3, 0, 1, 1, 1, 1, 1, 8, NOW(), NOW()),
   ('Esta é a segunda questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW()),
@@ -65,7 +65,7 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias das Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into materia_de_question
+insert into question_knowledge
   (question_id, materia_id)
 values
   (1, 1),
@@ -87,7 +87,7 @@ VALUES
 -- Teste
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into teste
-  (atualizado_em, criado_em, descricao, id_professor, id_disciplina, id_fase_de_ensino)
+  (atualizado_em, criado_em, descricao, id_professor, id_subject, id_fase_de_ensino)
 VALUES
   (NOW(), NOW(), 'Primeiro teste do sistema', 1, 2, 8);
 

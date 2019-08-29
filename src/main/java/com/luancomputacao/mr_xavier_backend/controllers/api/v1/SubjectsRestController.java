@@ -1,7 +1,7 @@
 package com.luancomputacao.mr_xavier_backend.controllers.api.v1;
 
-import com.luancomputacao.mr_xavier_backend.domain.Disciplina;
-import com.luancomputacao.mr_xavier_backend.services.DisciplinaService;
+import com.luancomputacao.mr_xavier_backend.domain.Subject;
+import com.luancomputacao.mr_xavier_backend.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,21 +13,21 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/disciplina")
-public class DisciplinasRestController {
+@RequestMapping(value = "/subject")
+public class SubjectsRestController {
 
     @Autowired
-    DisciplinaService disciplinaService;
+    SubjectService subjectService;
 
     @GetMapping("/")
     public ResponseEntity<?> list(){
-        List disciplinas = disciplinaService.list();
-        return ResponseEntity.ok(disciplinas);
+        List subjects = subjectService.list();
+        return ResponseEntity.ok(subjects);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> find(@PathVariable Integer id) {
-        Optional<Disciplina> disciplina = Optional.ofNullable(disciplinaService.findById(id));
-        return ResponseEntity.ok(disciplina);
+        Optional<Subject> subject = Optional.ofNullable(subjectService.findById(id));
+        return ResponseEntity.ok(subject);
     }
 }
