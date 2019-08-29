@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "opcao_de_questao")
+@Table(name = "opcao_de_question")
 @EntityListeners(AuditingEntityListener.class)
 public class OpcaoDeQuestao implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -20,10 +20,10 @@ public class OpcaoDeQuestao implements Serializable {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_questao", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_question", referencedColumnName = "id", nullable = false)
     @JsonBackReference
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private Questao questao;
+    private Question question;
 
     @Column(name = "texto")
     private String texto;
@@ -34,8 +34,8 @@ public class OpcaoDeQuestao implements Serializable {
     public OpcaoDeQuestao() {
     }
 
-    public OpcaoDeQuestao(Questao questao, String texto, Boolean value) {
-        this.questao = questao;
+    public OpcaoDeQuestao(Question question, String texto, Boolean value) {
+        this.question = question;
         this.texto = texto;
         this.value = value;
     }

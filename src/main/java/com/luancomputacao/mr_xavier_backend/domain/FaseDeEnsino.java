@@ -24,7 +24,7 @@ public class FaseDeEnsino implements Serializable {
 
     @OneToMany(mappedBy = "faseDeEnsino")
     @JsonBackReference
-    private Collection<Questao> questoes;
+    private Collection<Question> questoes;
 
 
     @OneToMany(mappedBy = "faseDeEnsino")

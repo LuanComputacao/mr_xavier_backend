@@ -1,6 +1,6 @@
 package com.luancomputacao.mr_xavier_backend.controllers.api.v1;
 
-import com.luancomputacao.mr_xavier_backend.domain.Questao;
+import com.luancomputacao.mr_xavier_backend.domain.Question;
 import com.luancomputacao.mr_xavier_backend.services.QuestaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/questao")
+@RequestMapping(value = "/question")
 public class QuestoesRestController {
 
     @Autowired
-    QuestaoService questaoService;
+    QuestaoService questionService;
 
     @GetMapping("/")
     public ResponseEntity<?> list() {
-        List questoes = questaoService.list();
+        List questoes = questionService.list();
         return ResponseEntity.ok(questoes);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> find(@PathVariable Integer id) {
-        Questao questao = questaoService.findById(id);
-        return ResponseEntity.ok(questao);
+        Question question = questionService.findById(id);
+        return ResponseEntity.ok(question);
     }
 }

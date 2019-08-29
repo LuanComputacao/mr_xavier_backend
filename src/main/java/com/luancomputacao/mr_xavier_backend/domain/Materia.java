@@ -33,7 +33,7 @@ public class Materia implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "materias")
     @JsonBackReference("materias")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private Collection<Questao> questoes;
+    private Collection<Question> questoes;
 
     public Materia() {
     }

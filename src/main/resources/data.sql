@@ -56,8 +56,8 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into questao
-  (enunciado, espacos, invalidada, nivel, publica, tipo_de_questao, id_autor, id_disciplina, id_fase_de_ensino, criado_em, atualizado_em)
+insert into question
+  (enunciado, espacos, invalidada, nivel, publica, tipo_de_question, id_autor, id_disciplina, id_fase_de_ensino, criado_em, atualizado_em)
 values
   ('Esta é a terceira questão?', 3, 0, 1, 1, 1, 1, 1, 8, NOW(), NOW()),
   ('Esta é a segunda questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW()),
@@ -65,8 +65,8 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias das Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into materia_de_questao
-  (questao_id, materia_id)
+insert into materia_de_question
+  (question_id, materia_id)
 values
   (1, 1),
   (1, 2),
@@ -75,8 +75,8 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Opções das Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-INSERT INTO opcao_de_questao
-  (texto, value, id_questao)
+INSERT INTO opcao_de_question
+  (texto, value, id_question)
 VALUES
   ('Primeira opção', true, 3),
   ('Segunda opção', false, 3),
@@ -103,7 +103,7 @@ values
 -- Questões de Teste
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into questoes_de_teste
-  (questao_id, teste_id)
+  (question_id, teste_id)
 values
   (2, 1),
   (3, 1);
@@ -112,6 +112,6 @@ values
 -- Proposta de Invalidação
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into proposta_de_invalidacao
-  (analisado_em, criado_em, justificativa, proposta, status, id_moderador, id_professor, id_questao)
+  (analisado_em, criado_em, justificativa, proposta, status, id_moderador, id_professor, id_question)
 values
   (null, NOW(), 'Primeiro teste de invalidação', 'Qualquer modificação', false, 2, 1, 1);
