@@ -20,7 +20,7 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into materia
+insert into knowledge
  (nome, id_subject)
  values
   ('Funções de Primeiro Grau', 1),
@@ -66,7 +66,7 @@ values
 -- Matérias das Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into question_knowledge
-  (question_id, materia_id)
+  (question_id, knowledge_id)
 values
   (1, 1),
   (1, 2),
