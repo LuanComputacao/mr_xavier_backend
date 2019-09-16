@@ -10,9 +10,9 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "materia")
+@Table(name = "knowledge")
 @EntityListeners(AuditingEntityListener.class)
-public class Materia implements Serializable {
+public class Knowledge implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,25 +22,25 @@ public class Materia implements Serializable {
     @JsonInclude
     private Integer id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "name")
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_disciplina", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_subject", referencedColumnName = "id", nullable = false)
     @JsonBackReference
-    private Disciplina disciplina;
+    private Subject subject;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "materias")
-    @JsonBackReference("materias")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "knowledges")
+    @JsonBackReference("knowledges")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private Collection<Questao> questoes;
+    private Collection<Question> questoes;
 
-    public Materia() {
+    public Knowledge() {
     }
 
-    public Materia(Disciplina disciplina, String nome) {
-        this.disciplina = disciplina;
-        this.nome = nome;
+    public Knowledge(Subject subject, String name) {
+        this.subject = subject;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -51,42 +51,42 @@ public class Materia implements Serializable {
         this.id = id;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Materia materia = (Materia) o;
-        return Objects.equals(getDisciplina(), materia.getDisciplina()) &&
-                Objects.equals(getNome(), materia.getNome());
+        Knowledge knowledge = (Knowledge) o;
+        return Objects.equals(getSubject(), knowledge.getSubject()) &&
+                Objects.equals(getName(), knowledge.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDisciplina(), getNome());
+        return Objects.hash(getSubject(), getName());
     }
 
 
     @Override
     public String toString() {
-        return "Materia{" +
-                "disciplina=" + disciplina +
-                ", nome='" + nome + '\'' +
+        return "Knowledge{" +
+                "subject=" + subject +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

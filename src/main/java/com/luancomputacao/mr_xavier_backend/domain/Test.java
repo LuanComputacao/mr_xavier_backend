@@ -13,9 +13,9 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
-@Table(name = "teste")
+@Table(name = "test")
 @EntityListeners(AuditingEntityListener.class)
-public class Teste implements Serializable {
+public class Test implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,35 +45,35 @@ public class Teste implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
-    @JoinColumn(name = "id_fase_de_ensino", referencedColumnName = "id")
-    private FaseDeEnsino faseDeEnsino;
+    @JoinColumn(name = "id_grade", referencedColumnName = "id")
+    private Grade grade;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
-    @JoinColumn(name = "id_disciplina", referencedColumnName = "id")
-    private Disciplina disciplina;
+    @JoinColumn(name = "id_subject", referencedColumnName = "id")
+    private Subject subject;
 
     @ManyToMany
     @JoinTable(
-            name = "questoes_de_teste",
-            joinColumns = {@JoinColumn(name = "questao_id")},
-            inverseJoinColumns = {@JoinColumn(name = "teste_id")}
+            name = "questoes_de_test",
+            joinColumns = {@JoinColumn(name = "question_id")},
+            inverseJoinColumns = {@JoinColumn(name = "test_id")}
     )
-    @JsonBackReference("testes")
-    private Collection<Questao> questoes;
+    @JsonBackReference("tests")
+    private Collection<Question> questoes;
 
-    @OneToMany(mappedBy = "teste")
+    @OneToMany(mappedBy = "test")
     @JsonBackReference
-    private Collection<ProfessorUtilizaTeste> professorUtilizaTestes;
+    private Collection<ProfessorUtilizaTest> professorUtilizaTests;
 
-    public Teste() {
+    public Test() {
     }
 
-    public Teste(String descricao, Professor autor, FaseDeEnsino faseDeEnsino, Disciplina disciplina, Collection<Questao> questoes) {
+    public Test(String descricao, Professor autor, Grade grade, Subject subject, Collection<Question> questoes) {
         this.descricao = descricao;
         this.autor = autor;
-        this.faseDeEnsino = faseDeEnsino;
-        this.disciplina = disciplina;
+        this.grade = grade;
+        this.subject = subject;
         this.questoes = questoes;
     }
 
@@ -121,35 +121,35 @@ public class Teste implements Serializable {
         this.atualizadoEm = atualizadoEm;
     }
 
-    public FaseDeEnsino getFaseDeEnsino() {
-        return faseDeEnsino;
+    public Grade getGrade() {
+        return grade;
     }
 
-    public void setFaseDeEnsino(FaseDeEnsino faseDeEnsino) {
-        this.faseDeEnsino = faseDeEnsino;
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
-    public Collection<Questao> getQuestoes() {
+    public Collection<Question> getQuestoes() {
         return questoes;
     }
 
-    public void setQuestoes(Collection<Questao> questoes) {
+    public void setQuestoes(Collection<Question> questoes) {
         this.questoes = questoes;
     }
 
-    public Collection<ProfessorUtilizaTeste> getProfessorUtilizaTestes() {
-        return professorUtilizaTestes;
+    public Collection<ProfessorUtilizaTest> getProfessorUtilizaTests() {
+        return professorUtilizaTests;
     }
 
-    public void setProfessorUtilizaTestes(Collection<ProfessorUtilizaTeste> professorUtilizaTestes) {
-        this.professorUtilizaTestes = professorUtilizaTestes;
+    public void setProfessorUtilizaTests(Collection<ProfessorUtilizaTest> professorUtilizaTests) {
+        this.professorUtilizaTests = professorUtilizaTests;
     }
 }

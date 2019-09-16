@@ -1,8 +1,8 @@
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Fases de Ensino
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into fase_de_ensino
-  (nome)
+insert into grade
+  (name)
 values
   ('1° Ano - Ensino Fundamental'),
   ('2° Ano - Ensino Fundamental'),
@@ -20,8 +20,8 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into materia
- (nome, id_disciplina)
+insert into knowledge
+ (name, id_subject)
  values
   ('Funções de Primeiro Grau', 1),
   ('Funções de Segundo Grau', 1),
@@ -31,33 +31,33 @@ insert into materia
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into disciplina
-  (nome)
+insert into subject
+  (code, name)
 values
-  ('Matemática'),
-  ('Português'),
-  ('Física'),
-  ('Biologia'),
-  ('Quimica'),
-  ('História'),
-  ('Sociologia'),
-  ('Filosofia'),
-  ('Inglês');
+  ('matem', 'Matemática'),
+  ('Portu', 'Português'),
+  ('fisic', 'Física'),
+  ('biolo', 'Biologia'),
+  ('quimi', 'Quimica'),
+  ('histo', 'História'),
+  ('socio', 'Sociologia'),
+  ('filos', 'Filosofia'),
+  ('ingle', 'Inglês');
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Professores
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into professor
-  (cpf, moderador, nome, senha)
+  (cpf, moderador, name, senha)
 values
-  ('00000000000', 0, 'Teste 00', 'asdf1234'),
+  ('00000000000', 0, 'Test 00', 'asdf1234'),
   ('07702439670', 1, 'Luan R. S. Santana', 'mrxavier123');
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into questao
-  (enunciado, espacos, invalidada, nivel, publica, tipo_de_questao, id_autor, id_disciplina, id_fase_de_ensino, criado_em, atualizado_em)
+insert into question
+  (enunciado, espacos, invalidada, nivel, publica, question_type, id_autor, id_subject, id_grade, criado_em, atualizado_em)
 values
   ('Esta é a terceira questão?', 3, 0, 1, 1, 1, 1, 1, 8, NOW(), NOW()),
   ('Esta é a segunda questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW()),
@@ -65,8 +65,8 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias das Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into materia_de_questao
-  (questao_id, materia_id)
+insert into question_knowledge
+  (question_id, knowledge_id)
 values
   (1, 1),
   (1, 2),
@@ -75,8 +75,8 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Opções das Questões
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-INSERT INTO opcao_de_questao
-  (texto, value, id_questao)
+INSERT INTO opcao_de_question
+  (texto, value, id_question)
 VALUES
   ('Primeira opção', true, 3),
   ('Segunda opção', false, 3),
@@ -84,34 +84,37 @@ VALUES
   ('Quarta opção', false, 3);
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
--- Teste
+-- Test
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into teste
-  (atualizado_em, criado_em, descricao, id_professor, id_disciplina, id_fase_de_ensino)
+insert into test
+  (atualizado_em, criado_em, descricao, id_professor, id_subject, id_grade)
 VALUES
-  (NOW(), NOW(), 'Primeiro teste do sistema', 1, 2, 8);
+  (NOW(), NOW(), 'Primeiro test do sistema', 1, 2, 8),
+  (NOW(), NOW(), 'Segundo test do sistema', 1, 2, 8);
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
--- Professor Utiliza Teste
+-- Professor Utiliza Test
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into professor_utiliza_teste
-  (data_utilizacao, id_professor, id_teste)
+insert into professor_utiliza_test
+  (data_utilizacao, id_professor, id_test)
 values
   (NOW(), 1, 1);
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
--- Questões de Teste
+-- Questões de Test
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into questoes_de_teste
-  (questao_id, teste_id)
+insert into questoes_de_test
+  (question_id, test_id)
 values
   (2, 1),
-  (3, 1);
+  (3, 1),
+  (1, 2),
+  (3, 2);
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Proposta de Invalidação
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into proposta_de_invalidacao
-  (analisado_em, criado_em, justificativa, proposta, status, id_moderador, id_professor, id_questao)
+  (analisado_em, criado_em, justificativa, proposta, status, id_moderador, id_professor, id_question)
 values
-  (null, NOW(), 'Primeiro teste de invalidação', 'Qualquer modificação', false, 2, 1, 1);
+  (null, NOW(), 'Primeiro test de invalidação', 'Qualquer modificação', false, 2, 1, 1);

@@ -1,6 +1,7 @@
 package com.luancomputacao.mr_xavier_backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -9,34 +10,35 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "fase_de_ensino ")
+@Table(name = "grade ")
 @EntityListeners(AuditingEntityListener.class)
-public class FaseDeEnsino implements Serializable {
+public class Grade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
+    @JsonProperty("code")
     private Integer id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "name")
+    private String name;
 
-    @OneToMany(mappedBy = "faseDeEnsino")
+    @OneToMany(mappedBy = "grade")
     @JsonBackReference
-    private Collection<Questao> questoes;
+    private Collection<Question> questoes;
 
 
-    @OneToMany(mappedBy = "faseDeEnsino")
+    @OneToMany(mappedBy = "grade")
     @JsonBackReference
-    private Collection<Teste> testes;
+    private Collection<Test> tests;
 
 
-    public FaseDeEnsino() {
+    public Grade() {
     }
 
-    public FaseDeEnsino(String nome) {
-        this.nome = nome;
+    public Grade(String name) {
+        this.name = name;
     }
 
 
@@ -48,31 +50,31 @@ public class FaseDeEnsino implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FaseDeEnsino that = (FaseDeEnsino) o;
-        return Objects.equals(getNome(), that.getNome());
+        Grade that = (Grade) o;
+        return Objects.equals(getName(), that.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNome());
+        return Objects.hash(getName());
     }
 
     @Override
     public String toString() {
-        return "FaseDeEnsino{" +
-                "nome='" + nome + '\'' +
+        return "Grade{" +
+                "name='" + name + '\'' +
                 '}';
     }
 }
