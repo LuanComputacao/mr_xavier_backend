@@ -16,7 +16,7 @@ public class PropostaDeInvalidacaoService {
 
     public List list() {
         Optional<List> propostaDeInvalidacao = Optional.of(propostaDeInvalidacaoRepository.findAll());
-        return propostaDeInvalidacao.orElseThrow(() -> new ObjectNotFoundException("Questoes não encontradas"));
+        return propostaDeInvalidacao.orElseThrow(() -> new ObjectNotFoundException("Questions não encontradas"));
     }
 
     public PropostaDeInvalidacao findById(Integer id) {

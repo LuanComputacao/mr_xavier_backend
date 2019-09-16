@@ -26,7 +26,7 @@ public class Grade implements Serializable {
 
     @OneToMany(mappedBy = "grade")
     @JsonBackReference
-    private Collection<Question> questoes;
+    private Collection<Question> questions;
 
 
     @OneToMany(mappedBy = "grade")

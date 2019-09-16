@@ -16,8 +16,8 @@ public class QuestionService {
     QuestionRepository questionRepository;
 
     public List list() {
-        Optional<List> questoes = Optional.of(questionRepository.findAll());
-        return questoes.orElseThrow(() -> new ObjectNotFoundException("Questoes não encontradas"));
+        Optional<List> questions = Optional.of(questionRepository.findAll());
+        return questions.orElseThrow(() -> new ObjectNotFoundException("Questions não encontradas"));
     }
 
     public Question findById(Integer id) {

@@ -33,7 +33,7 @@ public class Knowledge implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "knowledges")
     @JsonBackReference("knowledges")
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private Collection<Question> questoes;
+    private Collection<Question> questions;
 
     public Knowledge() {
     }

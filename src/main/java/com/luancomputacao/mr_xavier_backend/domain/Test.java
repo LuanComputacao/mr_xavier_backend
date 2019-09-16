@@ -55,12 +55,12 @@ public class Test implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name = "questoes_de_test",
+            name = "questions_de_test",
             joinColumns = {@JoinColumn(name = "question_id")},
             inverseJoinColumns = {@JoinColumn(name = "test_id")}
     )
     @JsonBackReference("tests")
-    private Collection<Question> questoes;
+    private Collection<Question> questions;
 
     @OneToMany(mappedBy = "test")
     @JsonBackReference
@@ -69,12 +69,12 @@ public class Test implements Serializable {
     public Test() {
     }
 
-    public Test(String descricao, Professor autor, Grade grade, Subject subject, Collection<Question> questoes) {
+    public Test(String descricao, Professor autor, Grade grade, Subject subject, Collection<Question> questions) {
         this.descricao = descricao;
         this.autor = autor;
         this.grade = grade;
         this.subject = subject;
-        this.questoes = questoes;
+        this.questions = questions;
     }
 
     public static long getSerialVersionUID() {
@@ -137,12 +137,12 @@ public class Test implements Serializable {
         this.subject = subject;
     }
 
-    public Collection<Question> getQuestoes() {
-        return questoes;
+    public Collection<Question> getQuestions() {
+        return questions;
     }
 
-    public void setQuestoes(Collection<Question> questoes) {
-        this.questoes = questoes;
+    public void setQuestions(Collection<Question> questions) {
+        this.questions = questions;
     }
 
     public Collection<ProfessorUtilizaTest> getProfessorUtilizaTests() {
