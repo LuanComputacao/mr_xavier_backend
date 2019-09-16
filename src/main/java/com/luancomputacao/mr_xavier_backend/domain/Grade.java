@@ -1,6 +1,7 @@
 package com.luancomputacao.mr_xavier_backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -17,10 +18,11 @@ public class Grade implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
+    @JsonProperty("code")
     private Integer id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "name")
+    private String name;
 
     @OneToMany(mappedBy = "grade")
     @JsonBackReference
@@ -35,8 +37,8 @@ public class Grade implements Serializable {
     public Grade() {
     }
 
-    public Grade(String nome) {
-        this.nome = nome;
+    public Grade(String name) {
+        this.name = name;
     }
 
 
@@ -48,12 +50,12 @@ public class Grade implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -61,18 +63,18 @@ public class Grade implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Grade that = (Grade) o;
-        return Objects.equals(getNome(), that.getNome());
+        return Objects.equals(getName(), that.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNome());
+        return Objects.hash(getName());
     }
 
     @Override
     public String toString() {
         return "Grade{" +
-                "nome='" + nome + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 }
