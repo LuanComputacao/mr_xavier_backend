@@ -13,15 +13,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/question")
-public class QuestoesRestController {
+public class QuestionsRestController {
 
     @Autowired
     QuestionService questionService;
 
     @GetMapping("/")
     public ResponseEntity<?> list() {
-        List questoes = questionService.list();
-        return ResponseEntity.ok(questoes);
+        List questions = questionService.list();
+        return ResponseEntity.ok(questions);
     }
 
     @GetMapping("/{id}")

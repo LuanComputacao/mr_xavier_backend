@@ -36,8 +36,8 @@ public class Question implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date atualizadoEm;
 
-    @Column(name = "enunciado")
-    private String enunciado;
+    @Column(name = "wording")
+    private String wording;
 
     @Column(name = "espacos")
     private Integer espacos;
@@ -45,8 +45,8 @@ public class Question implements Serializable {
     @Column(name = "invalidada")
     private Boolean invalidada;
 
-    @Column(name = "nivel")
-    private Float nivel;
+    @Column(name = "level")
+    private Float level;
 
     @Column(name = "publica")
     private Boolean publica;
@@ -64,8 +64,8 @@ public class Question implements Serializable {
     private Subject subject;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonManagedReference
     @JoinColumn(name = "id_grade", referencedColumnName = "id", updatable = false, nullable = false)
+    @JsonManagedReference
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Grade grade;
 
@@ -85,6 +85,7 @@ public class Question implements Serializable {
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "question_type")
+    @JsonProperty("type")
     private QuestionType questionTypeEnum;
 
     @ManyToMany
@@ -96,8 +97,8 @@ public class Question implements Serializable {
     @JsonManagedReference
     private Collection<Knowledge> knowledges;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questoes")
-    @JsonBackReference("questoes")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
+    @JsonBackReference("questions")
     private Collection<Test> tests;
 
     public Question() {
@@ -111,16 +112,16 @@ public class Question implements Serializable {
             Subject subject,
             Collection<Knowledge> knowledges,
             QuestionType questionTypeEnum,
-            Float nivel,
-            String enunciado) {
+            Float level,
+            String wording) {
         this.autor = autor;
         this.publica = publica;
         this.grade = grade;
         this.subject = subject;
         this.knowledges = knowledges;
         this.questionTypeEnum = questionTypeEnum;
-        this.enunciado = enunciado;
-        this.nivel = nivel;
+        this.wording = wording;
+        this.level = level;
         this.invalidada = false;
     }
 
@@ -164,12 +165,12 @@ public class Question implements Serializable {
         this.subject = subject;
     }
 
-    public String getEnunciado() {
-        return enunciado;
+    public String getWording() {
+        return wording;
     }
 
-    public void setEnunciado(String enunciado) {
-        this.enunciado = enunciado;
+    public void setWording(String wording) {
+        this.wording = wording;
     }
 
     public Integer getEspacos() {
@@ -204,12 +205,12 @@ public class Question implements Serializable {
         this.knowledges = knowledges;
     }
 
-    public Float getNivel() {
-        return nivel;
+    public Float getLevel() {
+        return level;
     }
 
-    public void setNivel(Float nivel) {
-        this.nivel = nivel;
+    public void setLevel(Float level) {
+        this.level = level;
     }
 
     public Collection<QuestionOption> getOpcoesDeQuestao() {
@@ -261,12 +262,12 @@ public class Question implements Serializable {
                 ", atualizadoEm=" + atualizadoEm +
                 ", autor=" + autor +
                 ", subject=" + subject +
-                ", enunciado='" + enunciado + '\'' +
+                ", wording='" + wording + '\'' +
                 ", espacos=" + espacos +
                 ", grade=" + grade +
                 ", invalidada=" + invalidada +
                 ", knowledges=" + knowledges +
-                ", nivel=" + nivel +
+                ", level=" + level +
                 ", opcoesDeQuestao=" + opcoesDeQuestao +
                 ", publica=" + publica +
                 ", questionTypeEnum=" + questionTypeEnum +

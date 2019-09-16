@@ -16,8 +16,8 @@ public class ProfessorUtilizaTestService {
     ProfessorUtilizaTestRepository professorUtilizaTestRepository;
 
     public List list() {
-        Optional<List> questoes = Optional.of(professorUtilizaTestRepository.findAll());
-        return questoes.orElseThrow(() -> new ObjectNotFoundException("Questoes não encontradas"));
+        Optional<List> questions = Optional.of(professorUtilizaTestRepository.findAll());
+        return questions.orElseThrow(() -> new ObjectNotFoundException("Questions não encontradas"));
     }
 
     public ProfessorUtilizaTest findById(Integer id) {

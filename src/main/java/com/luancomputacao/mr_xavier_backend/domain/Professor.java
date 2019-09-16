@@ -39,7 +39,7 @@ public class Professor implements Serializable {
 
     @OneToMany(mappedBy = "autor")
     @JsonBackReference
-    private Collection<Question> questoes;
+    private Collection<Question> questions;
 
     @OneToMany(mappedBy = "test")
     @JsonBackReference
@@ -122,12 +122,12 @@ public class Professor implements Serializable {
         this.moderador = moderador;
     }
 
-    public Collection<Question> getQuestoes() {
-        return questoes;
+    public Collection<Question> getQuestions() {
+        return questions;
     }
 
-    public void setQuestoes(Collection<Question> questoes) {
-        this.questoes = questoes;
+    public void setQuestions(Collection<Question> questions) {
+        this.questions = questions;
     }
 
     public Set<Perfil> getPerfis(){

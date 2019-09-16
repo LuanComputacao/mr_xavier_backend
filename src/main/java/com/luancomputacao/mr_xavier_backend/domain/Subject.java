@@ -37,7 +37,7 @@ public class Subject implements Serializable {
 
     @OneToMany(mappedBy = "subject")
     @JsonBackReference
-    private Collection<Question> questoes;
+    private Collection<Question> questions;
 
     @OneToMany(mappedBy = "subject")
     @JsonBackReference
@@ -82,12 +82,12 @@ public class Subject implements Serializable {
         this.knowledges = knowledges;
     }
 
-    public Collection<Question> getQuestoes() {
-        return questoes;
+    public Collection<Question> getQuestions() {
+        return questions;
     }
 
-    public void setQuestoes(Collection<Question> questoes) {
-        this.questoes = questoes;
+    public void setQuestions(Collection<Question> questions) {
+        this.questions = questions;
     }
 
     public Collection<Test> getTests() {
