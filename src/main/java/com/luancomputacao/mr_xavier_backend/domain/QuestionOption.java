@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "opcao_de_questao")
+@Table(name = "opcao_de_question")
 @EntityListeners(AuditingEntityListener.class)
-public class OpcaoDeQuestao implements Serializable {
+public class QuestionOption implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,10 @@ public class OpcaoDeQuestao implements Serializable {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_questao", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "id_question", referencedColumnName = "id", nullable = false)
     @JsonBackReference
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private Questao questao;
+    private Question question;
 
     @Column(name = "texto")
     private String texto;
@@ -31,11 +31,11 @@ public class OpcaoDeQuestao implements Serializable {
     @Column(name = "value")
     private Boolean value;
 
-    public OpcaoDeQuestao() {
+    public QuestionOption() {
     }
 
-    public OpcaoDeQuestao(Questao questao, String texto, Boolean value) {
-        this.questao = questao;
+    public QuestionOption(Question question, String texto, Boolean value) {
+        this.question = question;
         this.texto = texto;
         this.value = value;
     }
@@ -68,7 +68,7 @@ public class OpcaoDeQuestao implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OpcaoDeQuestao that = (OpcaoDeQuestao) o;
+        QuestionOption that = (QuestionOption) o;
         return Objects.equals(getTexto(), that.getTexto());
     }
 
@@ -80,7 +80,7 @@ public class OpcaoDeQuestao implements Serializable {
 
     @Override
     public String toString() {
-        return "OpcaoDeQuestao{" +
+        return "QuestionOption{" +
                 "texto='" + texto + '\'' +
                 '}';
     }

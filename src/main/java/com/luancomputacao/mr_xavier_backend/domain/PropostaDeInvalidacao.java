@@ -25,8 +25,8 @@ public class PropostaDeInvalidacao implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
-    @JoinColumn(name = "id_questao", referencedColumnName = "id", updatable = false, nullable = false)
-    private Questao questao;
+    @JoinColumn(name = "id_question", referencedColumnName = "id", updatable = false, nullable = false)
+    private Question question;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
@@ -63,15 +63,15 @@ public class PropostaDeInvalidacao implements Serializable {
     public PropostaDeInvalidacao() {
     }
 
-    public PropostaDeInvalidacao(Questao questao, Professor professor, Professor moderador) {
-        this.questao = questao;
+    public PropostaDeInvalidacao(Question question, Professor professor, Professor moderador) {
+        this.question = question;
         this.professor = professor;
         this.moderador = moderador;
         this.status = false;
     }
 
-    public PropostaDeInvalidacao(Questao questao, Professor professor, String justificativa, String proposta) {
-        this.questao = questao;
+    public PropostaDeInvalidacao(Question question, Professor professor, String justificativa, String proposta) {
+        this.question = question;
         this.professor = professor;
         this.justificativa = justificativa;
         this.proposta = proposta;
@@ -86,12 +86,12 @@ public class PropostaDeInvalidacao implements Serializable {
         this.id = id;
     }
 
-    public Questao getQuestao() {
-        return questao;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setQuestao(Questao questao) {
-        this.questao = questao;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public Professor getProfessor() {
@@ -155,7 +155,7 @@ public class PropostaDeInvalidacao implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PropostaDeInvalidacao that = (PropostaDeInvalidacao) o;
-        return Objects.equals(getQuestao(), that.getQuestao()) &&
+        return Objects.equals(getQuestion(), that.getQuestion()) &&
                 Objects.equals(getProfessor(), that.getProfessor()) &&
                 Objects.equals(getModerador(), that.getModerador()) &&
                 Objects.equals(getDataPostagem(), that.getDataPostagem());
@@ -163,13 +163,13 @@ public class PropostaDeInvalidacao implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getQuestao(), getProfessor(), getModerador(), getDataPostagem());
+        return Objects.hash(getQuestion(), getProfessor(), getModerador(), getDataPostagem());
     }
 
     @Override
     public String toString() {
         return "PropostaDeInvalidacao{" +
-                "questao=" + questao +
+                "question=" + question +
                 ", professor=" + professor +
                 ", moderador=" + moderador +
                 ", dataAnalise=" + dataAnalise +

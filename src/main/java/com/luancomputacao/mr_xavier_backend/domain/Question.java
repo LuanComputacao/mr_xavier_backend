@@ -1,7 +1,7 @@
 package com.luancomputacao.mr_xavier_backend.domain;
 
 import com.fasterxml.jackson.annotation.*;
-import com.luancomputacao.mr_xavier_backend.domain.enums.TipoDeQuestao;
+import com.luancomputacao.mr_xavier_backend.domain.enums.QuestionType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -13,9 +13,9 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "questao")
+@Table(name = "question")
 @EntityListeners(AuditingEntityListener.class)
-public class Questao implements Serializable {
+public class Question implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,73 +58,67 @@ public class Questao implements Serializable {
     private Professor autor;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_disciplina", referencedColumnName = "id", updatable = false, nullable = false)
+    @JoinColumn(name = "id_subject", referencedColumnName = "id", updatable = false, nullable = false)
     @JsonManagedReference
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private Disciplina disciplina;
+    private Subject subject;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
-    @JoinColumn(name = "id_fase_de_ensino", referencedColumnName = "id", updatable = false, nullable = false)
+    @JoinColumn(name = "id_grade", referencedColumnName = "id", updatable = false, nullable = false)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private FaseDeEnsino faseDeEnsino;
+    private Grade grade;
 
-    @OneToMany(mappedBy = "questao")
+    @OneToMany(mappedBy = "question")
     @JsonManagedReference
     @JsonProperty("opcoes")
-    private Collection<OpcaoDeQuestao> opcoesDeQuestao;
+    private Collection<QuestionOption> opcoesDeQuestao;
 
-    @OneToMany(mappedBy = "questao")
+    @OneToMany(mappedBy = "question")
     @JsonBackReference
     @JsonProperty("propostas-de-invalidacao")
     private Collection<PropostaDeInvalidacao> propostasDeInvalidacao;
 
     @OneToMany(mappedBy = "professor")
     @JsonBackReference
-    private Collection<ProfessorUtilizaTeste> professorUtilizaTestes;
+    private Collection<ProfessorUtilizaTest> professorUtilizaTests;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "tipo_de_questao")
-    private TipoDeQuestao tipoDeQuestaoEnum;
+    @Column(name = "question_type")
+    private QuestionType questionTypeEnum;
 
     @ManyToMany
     @JoinTable(
-            name = "materia_de_questao",
-            joinColumns = {@JoinColumn(name = "questao_id")},
-            inverseJoinColumns = {@JoinColumn(name = "materia_id")}
+            name = "question_knowledge",
+            joinColumns = {@JoinColumn(name = "question_id")},
+            inverseJoinColumns = {@JoinColumn(name = "knowledge_id")}
     )
     @JsonManagedReference
-    private Collection<Materia> materias;
+    private Collection<Knowledge> knowledges;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "questoes")
     @JsonBackReference("questoes")
-    private Collection<Teste> testes;
+    private Collection<Test> tests;
 
-    public Questao() {
+    public Question() {
 
     }
 
-    /**
-     * @param autor
-     * @param disciplina
-     * @param materias
-     * @param tipoDeQuestaoEnum
-     */
-    public Questao(
+    public Question(
             Professor autor,
             Boolean publica,
-            FaseDeEnsino faseDeEnsino,
-            Disciplina disciplina,
-            Collection<Materia> materias,
-            TipoDeQuestao tipoDeQuestaoEnum,
+            Grade grade,
+            Subject subject,
+            Collection<Knowledge> knowledges,
+            QuestionType questionTypeEnum,
             Float nivel,
             String enunciado) {
         this.autor = autor;
         this.publica = publica;
-        this.faseDeEnsino = faseDeEnsino;
-        this.disciplina = disciplina;
-        this.materias = materias;
-        this.tipoDeQuestaoEnum = tipoDeQuestaoEnum;
+        this.grade = grade;
+        this.subject = subject;
+        this.knowledges = knowledges;
+        this.questionTypeEnum = questionTypeEnum;
         this.enunciado = enunciado;
         this.nivel = nivel;
         this.invalidada = false;
@@ -162,12 +156,12 @@ public class Questao implements Serializable {
         this.autor = autor;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public String getEnunciado() {
@@ -186,12 +180,12 @@ public class Questao implements Serializable {
         this.espacos = espacos;
     }
 
-    public FaseDeEnsino getFaseDeEnsino() {
-        return faseDeEnsino;
+    public Grade getGrade() {
+        return grade;
     }
 
-    public void setFaseDeEnsino(FaseDeEnsino faseDeEnsino) {
-        this.faseDeEnsino = faseDeEnsino;
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 
     public Boolean getInvalidada() {
@@ -202,12 +196,12 @@ public class Questao implements Serializable {
         this.invalidada = invalidada;
     }
 
-    public Collection<Materia> getMaterias() {
-        return materias;
+    public Collection<Knowledge> getKnowledges() {
+        return knowledges;
     }
 
-    public void setMaterias(Collection<Materia> materias) {
-        this.materias = materias;
+    public void setKnowledges(Collection<Knowledge> knowledges) {
+        this.knowledges = knowledges;
     }
 
     public Float getNivel() {
@@ -218,11 +212,11 @@ public class Questao implements Serializable {
         this.nivel = nivel;
     }
 
-    public Collection<OpcaoDeQuestao> getOpcoesDeQuestao() {
+    public Collection<QuestionOption> getOpcoesDeQuestao() {
         return opcoesDeQuestao;
     }
 
-    public void setOpcoesDeQuestao(Collection<OpcaoDeQuestao> opcoesDeQuestao) {
+    public void setOpcoesDeQuestao(Collection<QuestionOption> opcoesDeQuestao) {
         this.opcoesDeQuestao = opcoesDeQuestao;
     }
 
@@ -234,29 +228,29 @@ public class Questao implements Serializable {
         this.publica = publica;
     }
 
-    public Enum<TipoDeQuestao> getTipoDeQuestaoEnum() {
-        return tipoDeQuestaoEnum;
+    public Enum<QuestionType> getQuestionTypeEnum() {
+        return questionTypeEnum;
     }
 
-    public void setTipoDeQuestaoEnum(TipoDeQuestao tipoDeQuestaoEnum) {
-        this.tipoDeQuestaoEnum = tipoDeQuestaoEnum;
+    public void setQuestionTypeEnum(QuestionType questionTypeEnum) {
+        this.questionTypeEnum = questionTypeEnum;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Questao questao = (Questao) o;
-        return Objects.equals(getCriadoEm(), questao.getCriadoEm()) &&
-                Objects.equals(getAutor(), questao.getAutor()) &&
-                Objects.equals(getDisciplina(), questao.getDisciplina()) &&
-                Objects.equals(getFaseDeEnsino(), questao.getFaseDeEnsino()) &&
-                Objects.equals(getPublica(), questao.getPublica());
+        Question question = (Question) o;
+        return Objects.equals(getCriadoEm(), question.getCriadoEm()) &&
+                Objects.equals(getAutor(), question.getAutor()) &&
+                Objects.equals(getSubject(), question.getSubject()) &&
+                Objects.equals(getGrade(), question.getGrade()) &&
+                Objects.equals(getPublica(), question.getPublica());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCriadoEm(), getAutor(), getDisciplina(), getFaseDeEnsino(), getPublica());
+        return Objects.hash(getCriadoEm(), getAutor(), getSubject(), getGrade(), getPublica());
     }
 
 
@@ -266,16 +260,16 @@ public class Questao implements Serializable {
                 "criadoEm=" + criadoEm +
                 ", atualizadoEm=" + atualizadoEm +
                 ", autor=" + autor +
-                ", disciplina=" + disciplina +
+                ", subject=" + subject +
                 ", enunciado='" + enunciado + '\'' +
                 ", espacos=" + espacos +
-                ", faseDeEnsino=" + faseDeEnsino +
+                ", grade=" + grade +
                 ", invalidada=" + invalidada +
-                ", materias=" + materias +
+                ", knowledges=" + knowledges +
                 ", nivel=" + nivel +
                 ", opcoesDeQuestao=" + opcoesDeQuestao +
                 ", publica=" + publica +
-                ", tipoDeQuestaoEnum=" + tipoDeQuestaoEnum +
+                ", questionTypeEnum=" + questionTypeEnum +
                 '}';
     }
 }
