@@ -22,8 +22,8 @@ public class Knowledge implements Serializable {
     @JsonInclude
     private Integer id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "name")
+    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_subject", referencedColumnName = "id", nullable = false)
@@ -38,9 +38,9 @@ public class Knowledge implements Serializable {
     public Knowledge() {
     }
 
-    public Knowledge(Subject subject, String nome) {
+    public Knowledge(Subject subject, String name) {
         this.subject = subject;
-        this.nome = nome;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -59,12 +59,12 @@ public class Knowledge implements Serializable {
         this.subject = subject;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -73,12 +73,12 @@ public class Knowledge implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Knowledge knowledge = (Knowledge) o;
         return Objects.equals(getSubject(), knowledge.getSubject()) &&
-                Objects.equals(getNome(), knowledge.getNome());
+                Objects.equals(getName(), knowledge.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSubject(), getNome());
+        return Objects.hash(getSubject(), getName());
     }
 
 
@@ -86,7 +86,7 @@ public class Knowledge implements Serializable {
     public String toString() {
         return "Knowledge{" +
                 "subject=" + subject +
-                ", nome='" + nome + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

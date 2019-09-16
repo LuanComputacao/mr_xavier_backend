@@ -2,7 +2,7 @@
 -- Fases de Ensino
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into grade
-  (nome)
+  (name)
 values
   ('1° Ano - Ensino Fundamental'),
   ('2° Ano - Ensino Fundamental'),
@@ -21,7 +21,7 @@ values
 -- Matérias
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into knowledge
- (nome, id_subject)
+ (name, id_subject)
  values
   ('Funções de Primeiro Grau', 1),
   ('Funções de Segundo Grau', 1),
@@ -32,23 +32,23 @@ insert into knowledge
 -- Matérias
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into subject
-  (nome)
+  (code, name)
 values
-  ('Matemática'),
-  ('Português'),
-  ('Física'),
-  ('Biologia'),
-  ('Quimica'),
-  ('História'),
-  ('Sociologia'),
-  ('Filosofia'),
-  ('Inglês');
+  ('matem', 'Matemática'),
+  ('Portu', 'Português'),
+  ('fisic', 'Física'),
+  ('biolo', 'Biologia'),
+  ('quimi', 'Quimica'),
+  ('histo', 'História'),
+  ('socio', 'Sociologia'),
+  ('filos', 'Filosofia'),
+  ('ingle', 'Inglês');
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Professores
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into professor
-  (cpf, moderador, nome, senha)
+  (cpf, moderador, name, senha)
 values
   ('00000000000', 0, 'Test 00', 'asdf1234'),
   ('07702439670', 1, 'Luan R. S. Santana', 'mrxavier123');
@@ -89,7 +89,8 @@ VALUES
 insert into test
   (atualizado_em, criado_em, descricao, id_professor, id_subject, id_grade)
 VALUES
-  (NOW(), NOW(), 'Primeiro test do sistema', 1, 2, 8);
+  (NOW(), NOW(), 'Primeiro test do sistema', 1, 2, 8),
+  (NOW(), NOW(), 'Segundo test do sistema', 1, 2, 8);
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Professor Utiliza Test
@@ -106,7 +107,9 @@ insert into questoes_de_test
   (question_id, test_id)
 values
   (2, 1),
-  (3, 1);
+  (3, 1),
+  (1, 2),
+  (3, 2);
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Proposta de Invalidação

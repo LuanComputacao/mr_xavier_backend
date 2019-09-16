@@ -23,9 +23,13 @@ public class Subject implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "nome")
+    @Column(name = "code")
+    @Length(max = 10)
+    private String code;
+
+    @Column(name = "name")
     @Length(max = 128)
-    private String nome;
+    private String name;
 
     @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
     @JsonManagedReference
@@ -42,8 +46,8 @@ public class Subject implements Serializable {
     public Subject() {
     }
 
-    public Subject(String nome) {
-        this.nome = nome;
+    public Subject(String name) {
+        this.name = name;
     }
 
     public Integer getId() {
@@ -54,12 +58,20 @@ public class Subject implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getCode() {
+        return code;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Collection<Knowledge> getKnowledges() {
@@ -91,18 +103,18 @@ public class Subject implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subject that = (Subject) o;
-        return Objects.equals(getNome(), that.getNome());
+        return Objects.equals(getName(), that.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNome());
+        return Objects.hash(getName());
     }
 
     @Override
     public String toString() {
         return "Subject{" +
-                "nome='" + nome + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 }

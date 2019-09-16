@@ -27,8 +27,8 @@ public class Professor implements Serializable {
     @Column(name = "cpf", length = 11, nullable = false, unique = true)
     private String cpf;
 
-    @Column(name = "nome", length = 128)
-    private String nome;
+    @Column(name = "name", length = 128)
+    private String name;
 
     @Column(name = "senha", length = 256)
     @JsonIgnore
@@ -65,9 +65,9 @@ public class Professor implements Serializable {
         addPerfil(Perfil.PROFESSOR);
     }
 
-    public Professor(String cpf, String nome, String senha, Boolean moderador) {
+    public Professor(String cpf, String name, String senha, Boolean moderador) {
         this.cpf = cpf;
-        this.nome = nome;
+        this.name = name;
         this.senha = senha;
         this.moderador = moderador;
         addPerfil(Perfil.PROFESSOR);
@@ -98,12 +98,12 @@ public class Professor implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSenha() {
@@ -156,7 +156,7 @@ public class Professor implements Serializable {
     public String toString() {
         return "Professor{" +
                 "cpf='" + cpf + '\'' +
-                ", nome='" + nome + '\'' +
+                ", name='" + name + '\'' +
                 ", senha='" + senha + '\'' +
                 ", moderador=" + moderador +
                 '}';
