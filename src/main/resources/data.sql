@@ -21,12 +21,12 @@ values
 -- Matérias
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into knowledge
- (name, id_subject)
+ (code, name, id_subject)
  values
-  ('Funções de Primeiro Grau', 1),
-  ('Funções de Segundo Grau', 1),
-  ('Verbos', 2),
-  ('Predicados', 2);
+  ('000000001', 'Funções de Primeiro Grau', 1),
+  ('000000002', 'Funções de Segundo Grau', 1),
+  ('000000003', 'Verbos', 2),
+  ('000000004', 'Predicados', 2);
 
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Matérias
@@ -87,7 +87,7 @@ VALUES
 -- Test
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 insert into test
-  (atualizado_em, criado_em, descricao, id_professor, id_subject, id_grade)
+  (atualizado_em, criado_em, description, id_professor, id_subject, id_grade)
 VALUES
   (NOW(), NOW(), 'Primeiro test do sistema', 1, 2, 8),
   (NOW(), NOW(), 'Segundo test do sistema', 1, 2, 8);
