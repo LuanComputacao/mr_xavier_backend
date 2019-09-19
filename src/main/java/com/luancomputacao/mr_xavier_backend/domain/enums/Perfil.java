@@ -7,19 +7,19 @@ public enum Perfil {
     ;
 
     private int cod;
-    private String descricao;
+    private String description;
 
-    Perfil(int cod, String descricao) {
+    Perfil(int cod, String description) {
         this.cod = cod;
-        this.descricao = descricao;
+        this.description = description;
     }
 
     public int getCod() {
         return cod;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
     public static Perfil toEnum(Integer cod) throws IllegalAccessException {

@@ -23,8 +23,8 @@ public class Test implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "descricao")
-    private String descricao;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
@@ -69,8 +69,8 @@ public class Test implements Serializable {
     public Test() {
     }
 
-    public Test(String descricao, Professor autor, Grade grade, Subject subject, Collection<Question> questions) {
-        this.descricao = descricao;
+    public Test(String description, Professor autor, Grade grade, Subject subject, Collection<Question> questions) {
+        this.description = description;
         this.autor = autor;
         this.grade = grade;
         this.subject = subject;
@@ -89,12 +89,12 @@ public class Test implements Serializable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Professor getAutor() {
