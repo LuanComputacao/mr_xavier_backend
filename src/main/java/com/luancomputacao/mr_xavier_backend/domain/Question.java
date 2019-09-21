@@ -76,8 +76,8 @@ public class Question implements Serializable {
 
     @OneToMany(mappedBy = "question")
     @JsonBackReference
-    @JsonProperty("propostas-de-invalidacao")
-    private Collection<PropostaDeInvalidacao> propostasDeInvalidacao;
+    @JsonProperty("invalidation-proposals")
+    private Collection<InvalidationProposal> invalidationProposals;
 
     @OneToMany(mappedBy = "professor")
     @JsonBackReference

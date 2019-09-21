@@ -47,11 +47,11 @@ public class Professor implements Serializable {
 
     @OneToMany(mappedBy = "professor")
     @JsonBackReference
-    private Collection<PropostaDeInvalidacao> propostasDeInvalidacao;
+    private Collection<InvalidationProposal> invalidationProposals;
 
     @OneToMany(mappedBy = "moderador")
     @JsonBackReference
-    private Collection<PropostaDeInvalidacao> propostasDeInvalidacaoModeradas;
+    private Collection<InvalidationProposal> invalidationProposalsModeradas;
 
     @OneToMany(mappedBy = "autor")
     @JsonBackReference
