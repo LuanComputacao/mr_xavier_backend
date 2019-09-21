@@ -114,7 +114,7 @@ values
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
 -- Proposta de Invalidação
 -- - - - - - - - - - - - - - - - - - - - - - - - - -
-insert into proposta_de_invalidacao
+insert into invalidation_proposal
   (analisado_em, criado_em, justificativa, proposta, status, id_moderador, id_professor, id_question)
 values
   (null, NOW(), 'Primeiro test de invalidação', 'Qualquer modificação', false, 2, 1, 1);

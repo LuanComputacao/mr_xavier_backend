@@ -12,9 +12,9 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "proposta_de_invalidacao")
+@Table(name = "invalidation_proposal")
 @EntityListeners(AuditingEntityListener.class)
-public class PropostaDeInvalidacao implements Serializable {
+public class InvalidationProposal implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -60,17 +60,17 @@ public class PropostaDeInvalidacao implements Serializable {
     private String proposta;
 
 
-    public PropostaDeInvalidacao() {
+    public InvalidationProposal() {
     }
 
-    public PropostaDeInvalidacao(Question question, Professor professor, Professor moderador) {
+    public InvalidationProposal(Question question, Professor professor, Professor moderador) {
         this.question = question;
         this.professor = professor;
         this.moderador = moderador;
         this.status = false;
     }
 
-    public PropostaDeInvalidacao(Question question, Professor professor, String justificativa, String proposta) {
+    public InvalidationProposal(Question question, Professor professor, String justificativa, String proposta) {
         this.question = question;
         this.professor = professor;
         this.justificativa = justificativa;
@@ -154,7 +154,7 @@ public class PropostaDeInvalidacao implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PropostaDeInvalidacao that = (PropostaDeInvalidacao) o;
+        InvalidationProposal that = (InvalidationProposal) o;
         return Objects.equals(getQuestion(), that.getQuestion()) &&
                 Objects.equals(getProfessor(), that.getProfessor()) &&
                 Objects.equals(getModerador(), that.getModerador()) &&
@@ -168,7 +168,7 @@ public class PropostaDeInvalidacao implements Serializable {
 
     @Override
     public String toString() {
-        return "PropostaDeInvalidacao{" +
+        return "InvalidationProposal{" +
                 "question=" + question +
                 ", professor=" + professor +
                 ", moderador=" + moderador +
