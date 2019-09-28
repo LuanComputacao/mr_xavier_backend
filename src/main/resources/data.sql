@@ -59,7 +59,7 @@ values
 insert into question
   (wording, espacos, invalidada, level, publica, question_type, id_autor, id_subject, id_grade, criado_em, atualizado_em)
 values
-  ('Esta é a terceira questão?', 3, 0, 1, 1, 1, 1, 1, 8, NOW(), NOW()),
+  ('Esta é a primeira questão?', 3, 0, 1, 1, 1, 1, 1, 8, NOW(), NOW()),
   ('Esta é a segunda questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW()),
   ('Esta é a terceira questão?', 3, 0, 2, 0, 1, 2, 2, 8, NOW(), NOW());
 -- - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -4,10 +4,7 @@ import com.luancomputacao.mr_xavier_backend.domain.Question;
 import com.luancomputacao.mr_xavier_backend.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,11 @@ public class QuestionsRestController {
     @GetMapping("/{id}")
     public ResponseEntity<?> find(@PathVariable Integer id) {
         Question question = questionService.findById(id);
+        return ResponseEntity.ok(question);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<?> put(Question question) {
         return ResponseEntity.ok(question);
     }
 }

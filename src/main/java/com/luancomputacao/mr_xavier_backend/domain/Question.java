@@ -71,8 +71,8 @@ public class Question implements Serializable {
 
     @OneToMany(mappedBy = "question")
     @JsonManagedReference
-    @JsonProperty("opcoes")
-    private Collection<QuestionOption> opcoesDeQuestao;
+    @JsonProperty("options")
+    private Collection<QuestionOption> questionOptions;
 
     @OneToMany(mappedBy = "question")
     @JsonBackReference
@@ -213,12 +213,12 @@ public class Question implements Serializable {
         this.level = level;
     }
 
-    public Collection<QuestionOption> getOpcoesDeQuestao() {
-        return opcoesDeQuestao;
+    public Collection<QuestionOption> getQuestionOptions() {
+        return questionOptions;
     }
 
-    public void setOpcoesDeQuestao(Collection<QuestionOption> opcoesDeQuestao) {
-        this.opcoesDeQuestao = opcoesDeQuestao;
+    public void setQuestionOptions(Collection<QuestionOption> questionOptions) {
+        this.questionOptions = questionOptions;
     }
 
     public Boolean getPublica() {
@@ -268,7 +268,7 @@ public class Question implements Serializable {
                 ", invalidada=" + invalidada +
                 ", knowledges=" + knowledges +
                 ", level=" + level +
-                ", opcoesDeQuestao=" + opcoesDeQuestao +
+                ", questionOptions=" + questionOptions +
                 ", publica=" + publica +
                 ", questionTypeEnum=" + questionTypeEnum +
                 '}';
