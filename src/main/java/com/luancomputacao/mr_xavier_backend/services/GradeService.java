@@ -24,4 +24,9 @@ public class GradeService {
         Optional<Grade> grade = gradeRepository.findById(id);
         return grade.orElseThrow(() -> new ObjectNotFoundException("Fase de Ensino " + id + " não encontrada"));
     }
+
+    public Grade insert(Grade obj) {
+        obj.setId(null);
+        return gradeRepository.save(obj);
+    }
 }
