@@ -18,7 +18,7 @@ public class Grade implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    @JsonProperty("code")
+    //@JsonProperty("code")
     private Integer id;
 
     @Column(name = "name")
